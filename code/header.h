@@ -42,4 +42,4 @@ namespace local {
 		double getRadius();
 
 	};
-
+}
