@@ -36,6 +36,9 @@ namespace local           //nilu ka robosub ka dimag XD
 	
 	//end of class Particle
 	
-	 
+	double Particle::getAcceleration(){ return _acceleration;}
+   	double Particle::getRadius(){ return _radius; }
+	double move(double time){
+		float x = 
 
 }
