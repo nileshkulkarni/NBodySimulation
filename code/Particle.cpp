@@ -22,8 +22,9 @@ namespace local           //nilu ka robosub ka dimag XD
 	}
 	Point Particle::getPosition() { return _position; }
 	double Particle::getVelocity() { return _velocity;}
-    double Particle::getAcceleration(){ return _acceleration;}
-    double Particle::getRadius(){ return _radius; }
-
+	double Particle::getAcceleration(){ return _acceleration;}
+   	double Particle::getRadius(){ return _radius; }
+	double move(double time){
+		float x = 
 
 }
