@@ -28,6 +28,7 @@ namespace local {
 		Particle(float mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
 		Point getPosition();
 		double getVelocity();
+		
 		double getAcceleration();
 		double getRadius();
 
