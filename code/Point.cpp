@@ -16,17 +16,19 @@ namespace local{
 		return Point(x - P.x,y- P.y);
 	}
 
-
-	float Point :: operator *(Point P){
+	Point Point :: operator *(double k){
+		Point(x * k,+y* k);
+	}
+	double Point :: operator *(Point P){
 		(x * P.x+y* P.y);
 	}
 
 
-	float Point :: operator ^(Point P){
+	double Point :: operator ^(Point P){
 		return (x * P.y - y* P.x);
 	}
 
-	float Point :: modulo(){
+	double Point :: modulo(){
 		return sqrt(x*x +y*y);
 	}
 }

@@ -8,16 +8,17 @@ namespace local {
 	
 	class Point{
 		public:
-		float x;
-		float y;
+		double x;
+		double y;
 
 		Point();
 		Point operator -(Point P);
 		Point operator -();
 		Point operator +(Point P);
-		float operator *(Point P); //dot product
-		float operator ^(Point P);//cross product
-		float modulo();
+		double operator *(Point P); //dot product
+		double operator ^(Point P);					//cross product
+		double operator *(double k);
+		double modulo();
 
 		
 	};
@@ -25,7 +26,7 @@ namespace local {
 
 	class Particle{
 		private:
-		float _mass;
+		double _mass;
 		Point _position;
 		double _velocity;
 		double _acceleration;
@@ -34,12 +35,27 @@ namespace local {
 		public:
 		
 		Particle();
-		Particle(float mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
+		Particle(double mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
 		Point getPosition();
 		double getVelocity();
-		
+		void updateVelocity(double velocity);
+		void updateAcceleration(double acceleration);
+		void updatePosition(Point point);
 		double getAcceleration();
 		double getRadius();
 
 	};
+
+	class System{
+		private:
+		vector<Particle> _particles;
+		double simTime;
+
+
+
+
+
+
+
+
 }
