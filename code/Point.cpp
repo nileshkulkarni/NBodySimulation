@@ -29,4 +29,4 @@ namespace local{
 	float Point :: modulo(){
 		return sqrt(x*x +y*y);
 	}
-};
+}
