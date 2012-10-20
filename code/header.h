@@ -1,6 +1,11 @@
 
 
 namespace local {
+	
+	#define particleMass 1
+	#define particleRadius 1
+	
+	
 	class Point{
 		public:
 		float x;
@@ -20,6 +25,7 @@ namespace local {
 		public:
 		
 		Particle();
+		Particle(float mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
 		Point getPosition();
 		double getVelocity();
 		double getAcceleration();
