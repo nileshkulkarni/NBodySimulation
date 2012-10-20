@@ -11,6 +11,11 @@ namespace local{
 		return Point(-x ,-y);
 	}
 
+	void Point :: operator =(Point P){
+		x=P.x;
+		y=P.y;
+	}
+
 
 	Point Point :: operator -(Point P){
 		return Point(x - P.x,y- P.y);

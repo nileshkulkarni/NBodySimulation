@@ -12,6 +12,7 @@ namespace local {
 		double y;
 
 		Point();
+		void Point :: operator =(Point P)
 		Point operator -(Point P);
 		Point operator -();
 		Point operator +(Point P);
