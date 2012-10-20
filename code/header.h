@@ -10,6 +10,15 @@ namespace local {
 		public:
 		float x;
 		float y;
+
+		Point();
+		Point operator -(Point P);
+		Point operator -();
+		Point operator +(Point P);
+		float operator *(Point P); //dot product
+		float operator ^(Point P);//cross product
+		float modulo();
+
 		
 	};
 	
