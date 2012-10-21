@@ -20,6 +20,9 @@ namespace local{
 	Point Point :: operator -(Point P){
 		return Point(x - P.x,y- P.y);
 	}
+	Point Point :: operator +(Point P){
+		return Point(x +P.x,y+ P.y);
+	}
 
 	Point Point :: operator *(double k){
 		Point(x * k,+y* k);

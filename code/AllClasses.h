@@ -18,17 +18,24 @@ namespace local {
 		double operator *(Point P); //dot product
 		double operator ^(Point P);	//cross product
 		double operator *(double k);
+		void operator =(Point P);
+		
+		
 		double modulo();
 
 		
 	};
 	
+
+  
 	
   class Vector {
 	  public:
 	  double x;
 	  double y;
-	  //Vector operator =(Vector v){return;
+	  Vector (double a, double b);
+	  void  operator =(Vector P);
+	  double length();	  
 	  };
 	  	
 	
@@ -48,6 +55,7 @@ namespace local {
 		Particle();
 		Particle(double mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
 		Point getPosition();
+		double move(double t);
 		double getVelocity();
 		void updateVelocity(double velocity);
 		void updateAcceleration(double acceleration);
