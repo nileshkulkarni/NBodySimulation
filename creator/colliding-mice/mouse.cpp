@@ -18,7 +18,7 @@ static qreal normalizeAngle(qreal angle)
     return angle;
 }
 
-Mouse::Mouse(QColor colour)
+Particle::Particle(QColor colour)
     //: angle(0), speed(0), mouseEyeDirection(0),
     //  color(qrand() % 256, qrand() % 256, qrand() % 256)
     //:color(0,0,0)
@@ -37,14 +37,62 @@ Mouse::Mouse(QColor colour)
             //  color(qrand() % 256, qrand() % 256, qrand() % 256)
 }
 
-QRectF Mouse::boundingRect() const
+
+
+Particle::Particle()
+    {
+        _velocity = Vector(0,0);
+    }
+
+
+    Particle::Particle(double mass, Vector velocity , Vector acceleration  , double radius, Vector position)
+    {
+        _mass=mass;
+        _velocity=velocity;
+        _acceleration=acceleration;
+        _radius=radius;
+        _position=position;
+    }
+    Vector Particle::getPosition() { return _position; }
+    Vector Particle::getVelocity() { return _velocity;}
+        Vector Particle::getAcceleration(){ return _acceleration;}
+        void Particle::updateVelocity(Vector velocity){
+        _velocity=velocity;
+    }
+    void Particle::updateAcceleration(Vector acceleration) {
+        _acceleration=acceleration;
+    }
+    void Particle::updatePosition(Vector point){
+        _position=point;}
+    //void Particle::addCoordinates(Vector point){ _position + point;  }
+
+
+    //end of class Particle
+
+    double Particle::getRadius(){ return _radius; }
+    void Particle::move(double t){    //t is going to be very small
+        Vector p;
+        p.x = _velocity.x*t + _acceleration.x*t*t/2;
+        p.y = _velocity.y*t + _acceleration.y*t*t/2;
+        _position = (_position + p);
+    }
+
+
+
+
+
+
+
+
+
+QRectF Particle::boundingRect() const
 {
     qreal adjust = 0.5;
     return QRectF(-18 - adjust, -22 - adjust,
                   36 + adjust, 60 + adjust);
 }
 
-QPainterPath Mouse::shape() const
+QPainterPath Particle::shape() const
 {
     QPainterPath path;
     path.addRect(-10, -10, 10, 10);
@@ -52,7 +100,7 @@ QPainterPath Mouse::shape() const
 }
 
 
-void Mouse::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
+void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
     // Body
     painter->setBrush(color);
@@ -89,7 +137,7 @@ void Mouse::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *
 
 }
 
-void Mouse::advance(int step)
+void Particle::advance(int step)
 {
 
 

@@ -34,7 +34,7 @@
 	//end of class Particle
 	
    	double Particle::getRadius(){ return _radius; }
-	void Particle::move(double t){
+	void Particle::move(double t){    //t is going to be very small
 		Vector p;
 		p.x = _velocity.x*t + _acceleration.x*t*t/2;
 		p.y = _velocity.y*t + _acceleration.y*t*t/2;

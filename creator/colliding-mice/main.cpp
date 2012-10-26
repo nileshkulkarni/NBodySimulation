@@ -18,7 +18,7 @@
 
      for (int i = 0; i < MouseCount; ++i) {
          QColor q(0,i%2 * 255,(i+1)%2 * 255);
-         Mouse *mouse = new Mouse(q);
+         Particle *mouse = new Particle(q);
         //mouse->setPos(::sin((i * 6.28) / MouseCount) * 200,
                    //    ::cos((i * 6.28) / MouseCount) * 200);
 

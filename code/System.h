@@ -9,7 +9,7 @@ class System{
 	double _simTime;
 	double _probeInterval;
 	int _NoOfParticles;
-	double probeInterval;
+	//double probeInterval;
 	
 	public:
 	System();	
