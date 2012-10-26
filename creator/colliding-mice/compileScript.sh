@@ -4,3 +4,4 @@
 qmake -project
 qmake
 make
+./colliding-mice
