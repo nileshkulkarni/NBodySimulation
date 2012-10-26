@@ -1,18 +1,17 @@
+#include "AllClasses.h"
 
-#include "Particle.h"
-
-
-
-
-namespace local           //nilu ka robosub ka dimag XD 
+namespace local            
 {
+	
+	//Class Particle
+	
 	Particle::Particle()
 	{
 		_velocity = 0;
 	}
 	
 	
-	Particle::Particle(float mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , Point position)
+	Particle::Particle(double mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , Point position)
 	{
 		_mass=particleMass;
 		_velocity=velocity;
@@ -21,10 +20,24 @@ namespace local           //nilu ka robosub ka dimag XD
 		_position=position;
 	}
 	Point Particle::getPosition() { return _position; }
-	double Particle::getVelocity() { return _velocity;}
+	Vector Particle::getVelocity() { return _velocity;}
+    Vector Particle::getAcceleration(){ return _acceleration;}
+    Vector Particle::getRadius(){ return _radius; }
+    
+    void Particle::updateVelocity(Vector velocity){_velocity=velocity;}
+	void Particle::updateAcceleration(Vector acceleration) { _acceleration=acceleration;}
+	void Particle::updatePosition(Point point){ _position=point; }
+	//void Particle::addCoordinates(Point point){ _position + point;  }
+	
+	
+	//end of class Particle
+	
 	double Particle::getAcceleration(){ return _acceleration;}
    	double Particle::getRadius(){ return _radius; }
-	double move(double time){
-		float x = 
-
-}
+	double Particle::move(double t){
+		Point p;
+		p.x = _velocity.x*t + _acceleration.x*t*t/2;
+		p.y = _velocity.y*t + _acceleration.y*t*t/2;
+		_position = (_position + p);	
+	}	
+}	

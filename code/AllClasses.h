@@ -12,25 +12,42 @@ namespace local {
 		double y;
 
 		Point();
-		void Point :: operator =(Point P)
 		Point operator -(Point P);
 		Point operator -();
 		Point operator +(Point P);
 		double operator *(Point P); //dot product
-		double operator ^(Point P);					//cross product
+		double operator ^(Point P);	//cross product
 		double operator *(double k);
+		void operator =(Point P);
+		
+		
 		double modulo();
 
 		
 	};
 	
 
+  
+	
+  class Vector {
+	  public:
+	  double x;
+	  double y;
+	  Vector (double a, double b);
+	  void  operator =(Vector P);
+	  double length();	  
+	  };
+	  	
+	
+	
+	
+
 	class Particle{
 		private:
 		double _mass;
 		Point _position;
-		double _velocity;
-		double _acceleration;
+		Vector _velocity;
+		Vector _acceleration;
 		double _radius;
 
 		public:
@@ -38,10 +55,13 @@ namespace local {
 		Particle();
 		Particle(double mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
 		Point getPosition();
+		double move(double t);
 		double getVelocity();
 		void updateVelocity(double velocity);
 		void updateAcceleration(double acceleration);
 		void updatePosition(Point point);
+		void addCoordinates(Point point);
+		
 		double getAcceleration();
 		double getRadius();
 
@@ -50,13 +70,25 @@ namespace local {
 	class System{
 		private:
 		vector<Particle> _particles;
-		double simTime;
+		double _simTime;
+		double _probeInterval;
+		int _NoOfParticles;
+		
+		public:
+		
+		
+		
+
+
+	};
 
 
 
 
 
-
-
-
+//end of namespace local
 }
+
+
+
+
