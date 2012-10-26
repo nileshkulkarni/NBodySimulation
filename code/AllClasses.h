@@ -1,43 +1,30 @@
-
-
-namespace local {
-	
+#ifndef ALL_CLASSES
+#define ALL_CLASSES
 	#define particleMass 1
 	#define particleRadius 1
 	
 	
-	class Point{
+	class Vector{
 		public:
 		double x;
 		double y;
 
-		Point();
-		Point operator -(Point P);
-		Point operator -();
-		Point operator +(Point P);
-		double operator *(Point P); //dot product
-		double operator ^(Point P);	//cross product
-		double operator *(double k);
-		void operator =(Point P);
+		Vector();
+		Vector(int a,int b);
+		Vector operator -(Vector P);
+		Vector operator -();
+		Vector operator +(Vector P);
+		double operator *(Vector P); //dot product
+		double operator ^(Vector P);	//cross product
+		Vector operator *(double k);
+		void operator =(Vector P);
 		
 		
 		double modulo();
 
 		
 	};
-	
-
-  
-	
-  class Vector {
-	  public:
-	  double x;
-	  double y;
-	  Vector (double a, double b);
-	  void  operator =(Vector P);
-	  double length();	  
-	  };
-	  	
+		
 	
 	
 	
@@ -45,7 +32,7 @@ namespace local {
 	class Particle{
 		private:
 		double _mass;
-		Point _position;
+		Vector _position;
 		Vector _velocity;
 		Vector _acceleration;
 		double _radius;
@@ -53,32 +40,17 @@ namespace local {
 		public:
 		
 		Particle();
-		Particle(double mass = particleMass, double velocity =0 , double acceleration = 0, double radius=particleRadius , double position); 
-		Point getPosition();
-		double move(double t);
-		double getVelocity();
-		void updateVelocity(double velocity);
-		void updateAcceleration(double acceleration);
-		void updatePosition(Point point);
-		void addCoordinates(Point point);
+		Particle(double mass , Vector velocity  , Vector acceleration , double radius , Vector position); 
+		Vector getPosition();
+		void move(double t);
+		Vector getVelocity();
+		void updateVelocity(Vector velocity);
+		void updateAcceleration(Vector acceleration);
+		void updatePosition(Vector point);
+	//	void addCoordinates(Vector point);
 		
-		double getAcceleration();
+		Vector getAcceleration();
 		double getRadius();
-
-	};
-
-	class System{
-		private:
-		vector<Particle> _particles;
-		double _simTime;
-		double _probeInterval;
-		int _NoOfParticles;
-		
-		public:
-		
-		
-		
-
 
 	};
 
@@ -87,8 +59,8 @@ namespace local {
 
 
 //end of namespace local
-}
 
 
+#endif
 
 
