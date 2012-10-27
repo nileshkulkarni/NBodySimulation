@@ -5,7 +5,7 @@
         x =0.0;
         y =0.0;
     }
-    Vector::Vector(int a,int b){
+    Vector::Vector(double a,double b){
         x=a;
         y=b;
     }
@@ -27,10 +27,13 @@
     }
 
     Vector Vector :: operator *(double k){
-        Vector(x * k,+y* k);
+       return Vector(x * k, y* k);
+    }
+    Vector Vector :: operator /(double k){
+       return Vector(x / k, y/ k);
     }
     double Vector :: operator *(Vector P){
-        (x * P.x+y* P.y);
+       return (x * P.x+y* P.y);
     }
 
 
@@ -42,4 +45,9 @@
         return sqrt(x*x +y*y);
     }
 
+    void Vector :: normalize(){
+        double mod= sqrt(x*x + y*y);
+        x= x/mod;
+        y=y/mod;
+    }
 
