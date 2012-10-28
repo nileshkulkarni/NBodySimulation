@@ -6,8 +6,8 @@
 
  #include <math.h>
 
- static const int MouseCount = 3;
-#define probe_interval 1000/50
+ static const int MouseCount = 8;
+#define probe_interval 1000/1000
 #define particleMass 1
 #define particleRadius 10
 
@@ -26,22 +26,22 @@
      System sys(MouseCount,probe_interval);
 
      for (int i = 0; i < MouseCount; ++i) {
-         QColor q(qrand()%256,qrand()%256,qrand()%256);
-           Particle *particle = new Particle(q,particleMass,particleRadius);
+        // QColor q(qrand()%256,qrand()%256,qrand()%256);
+         QColor q(0,0,0);
+         Particle *particle = new Particle(q,particleMass,particleRadius);
         //Particle *particle = new Particle(q,particleMass,particleRadius ,Vector( 0.01* (i%2)  - 0.01 * ((i+1)%2) , 0));
 
-         //mouse->setPos(::sin((i * 6.28) / MouseCount) * 200,
-                   //    ::cos((i * 6.28) / MouseCount) * 200);
+         particle->setPos(::sin((i * TwoPi) / MouseCount) * 150,
+                       ::cos((i * TwoPi) / MouseCount) * 150);
 
-         //qre
 
-         /*particle->setPos(i%2 * (qrand()%200-100) + (i+1)%2 *(((i)%4 * 100) - (i+1)%2 * 100) ,
-                       (i+1)%2 *( qrand()%200-100 )  + (i)%2 *(((i+1)%4 * 100) - (i)%2 * 100)
-                         );
+         //particle->setPos(i%2 * (qrand()%200 -100) + (i+1)%2 *(((i)%4 * 100) - (i+1)%2 * 100),
+           //            (i+1)%2 *(qrand()%200-100 )  + (i)%2 *(((i+1)%4 * 100) - (i)%2 * 100)
+             //            );
 
-            */
 
-            particle->setPos(qrand()%(2*Xright) -Xright ,qrand()%(2*Ytop) -Ytop);
+
+          //  particle->setPos(qrand()%(2*Xright) -Xright ,qrand()%(2*Ytop) -Ytop);
          //  particle->setPos( -200*(i%2)+ 200*((i+1)%2), 0 );
 
          scene.addItem(particle);

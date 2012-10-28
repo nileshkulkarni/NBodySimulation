@@ -8,12 +8,7 @@
 
 
 System::System(){
-
 }
-
-
-
-
 
 System::System(int k,  double probeInterval){
     _particles.resize(k);
@@ -21,19 +16,12 @@ System::System(int k,  double probeInterval){
    _probeInterval=probeInterval;
 }
 
-
-
 void System::addItem(Particle* P , int index){
     _particles[index]=P;
 }
 
 
-
-
 void System :: detectCollision(){
-    //typename::std::vector<Particle*>::iterator it1;
-    //typename::std::vector<Particle*>::iterator it2;
-
     for(int i = 0;i<_NoOfParticles;i++){
         for(int j=i+1; j< _NoOfParticles;j++){
             if(i==j){
@@ -47,7 +35,7 @@ void System :: detectCollision(){
                 Vector point1 =	_particles[i]->getPosition();
                 Vector point2 =  _particles[j]->getPosition();
                 Vector p      = point1 - point2;
-                if(p.modulo() <= (radius1 +radius2+0.1)){
+                if(p.modulo() <= (radius1 +radius2)){
                     //Particle *pp1 = it1;
                 //	Particle *pp2 = it2;
                     actOnCollision(i,j);
@@ -90,8 +78,9 @@ void System:: actOnCollision(int i , int j){
     _particles[j]->updateVelocity( (parallel * p1parallel) + (perp * p2perp));
 
 
-    //if((_particles[i]->getVelocity()
-    /*{
+    /*
+    if((_particles[i]->getVelocity()
+    {
         std::cout<<"***************************************"<<std::endl;
         std::cout<<"modulo is " <<parallel.modulo()<<std::endl;
         std::cout<<"position 1 "<< point1.x <<": " <<point1.y <<std::endl;
@@ -104,11 +93,6 @@ void System:: actOnCollision(int i , int j){
         std::cout<<(_particles[i]->getVelocity()).x<<","<<(_particles[i]->getVelocity()).y<<"   ::   ";
         std::cout<<(_particles[j]->getVelocity()).x<<","<<(_particles[j]->getVelocity()).y<<std::endl;
    }*/
-
-
-
-
-
 
 }
 

@@ -8,6 +8,8 @@
 #define Xright 150
 #define Ytop 150
 #define Ybottom -150
+static const double Pi = 3.1_nextVelocity;_nextVelocity;4159265358979323846264338327950288419717;
+static double TwoPi = 2.0 * Pi;
 
 
 
@@ -25,6 +27,7 @@ private:
     Vector _position;
     Vector _nextPosition;
     Vector _velocity;
+    Vector _nextVelocity;
     Vector _acceleration;
     double _radius;
 
@@ -52,6 +55,7 @@ public:
     void move(double t);
     Vector getVelocity();
     void updateVelocity(Vector velocity);
+   // void updateNextVelocity(Vector velocity);
     void updateAcceleration(Vector acceleration);
     void updatePosition();
         //	void addCoordinates(Vector point);

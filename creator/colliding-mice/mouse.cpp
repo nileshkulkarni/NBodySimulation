@@ -5,8 +5,8 @@
 #include <QStyleOption>
 #include <QColor>
 #include <math.h>
-static const double Pi = 3.14159265358979323846264338327950288419717;
-static double TwoPi = 2.0 * Pi;
+//static const double Pi = 3.14159265358979323846264338327950288419717;
+//static double TwoPi = 2.0 * Pi;
 #define radius 10
 
 static qreal normalizeAngle(qreal angle)
@@ -101,6 +101,12 @@ Vector Particle::getAcceleration(){ return _acceleration;}
 void Particle::updateVelocity(Vector velocity){
         _velocity=velocity;
     }
+
+/*
+void Particle::updateNextVelocity(Vector velocity){
+ _nextVelocity=velocity;
+}
+*/
 
 void Particle::updateAcceleration(Vector acceleration) {
         _acceleration=acceleration;
