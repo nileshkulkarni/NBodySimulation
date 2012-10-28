@@ -7,7 +7,7 @@
  #include <math.h>
 
  static const int MouseCount = 3;
-#define probe_interval 1000/10
+#define probe_interval 1000/50
 #define particleMass 1
 #define particleRadius 10
 

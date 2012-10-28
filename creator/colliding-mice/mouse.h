@@ -48,6 +48,7 @@ public:
                QWidget *widget);
 
     Vector getPosition();
+    double getMass();
     void move(double t);
     Vector getVelocity();
     void updateVelocity(Vector velocity);

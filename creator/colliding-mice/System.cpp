@@ -2,8 +2,9 @@
 
 #include "System.h"
 #include "AllClasses.h"
+#include "mouse.h"
 #include <iostream>
-
+#include <cmath>
 
 
 System::System(){
@@ -46,7 +47,7 @@ void System :: detectCollision(){
                 Vector point1 =	_particles[i]->getPosition();
                 Vector point2 =  _particles[j]->getPosition();
                 Vector p      = point1 - point2;
-                if(p.modulo() < (radius1 +radius2)){
+                if(p.modulo() <= (radius1 +radius2+0.1)){
                     //Particle *pp1 = it1;
                 //	Particle *pp2 = it2;
                     actOnCollision(i,j);
@@ -75,7 +76,7 @@ void System:: actOnCollision(int i , int j){
 
 
 
-   if((p1Velocity-p2Velocity)* parallel <= 0) return;
+//   if((p1Velocity-p2Velocity)* parallel <= 0) return;
 
 
     double p1parallel = parallel * p1Velocity;
@@ -83,7 +84,7 @@ void System:: actOnCollision(int i , int j){
     double p1perp = perp * p1Velocity;
     double p2perp = perp* p2Velocity;
 
-//    if((parallel * (p1Velocity - p2Velocity)) <= 0) return;
+    if((parallel * (p1Velocity - p2Velocity)) >= 0) return;
 
     _particles[i]->updateVelocity( (parallel * p2parallel) + (perp * p1perp));
     _particles[j]->updateVelocity( (parallel * p1parallel) + (perp * p2perp));
@@ -122,7 +123,7 @@ void System:: actOnCollision(int i , int j){
  void System:: run(){
      //std::cout<<"chalta hai"<<std::endl;
 
-     detectCollision();
+       detectCollision();
 
      for(int i=0;i< _NoOfParticles;i++){
          _particles[i]->move(_probeInterval);
@@ -135,7 +136,45 @@ void System:: actOnCollision(int i , int j){
      }
 
 
+     resetAcceleration();
+
+
 }
+
+
+
+
+
+ void System::resetAcceleration(){
+     for(int i = 0;i<_NoOfParticles;i++){
+         Vector newAccel(0,0);
+         Vector pos = _particles[i]->getPosition();
+         for(int j=0; j< _NoOfParticles;j++){
+             if(i==j) continue;
+             Vector displacement=_particles[j]->getPosition()-pos;
+             double modAccel =((Kg * _particles[j]->getMass())/ pow(displacement.modulo(),3));
+             newAccel.x += displacement.x *  modAccel;
+             newAccel.y += displacement.y *  modAccel;
+         }
+
+         _particles[i]->updateAcceleration(newAccel);
+
+      }
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
