@@ -9,7 +9,6 @@ static const double Pi = 3.14159265358979323846264338327950288419717;
 static double TwoPi = 2.0 * Pi;
 #define radius 10
 
-
 static qreal normalizeAngle(qreal angle)
 {
     while (angle < 0)
@@ -29,11 +28,13 @@ Particle::Particle(QColor colour,double mass , double Radius )
     angle = Pi/4;
    // mouseEyeDirection=0;
    color = colour;
-    _velocity.x = 0.1;
-    _velocity.y = 0.1;
+   //_velocity.x = (qrand()%100)/100;
+   //_velocity.y = (qrand()%100)/100;
+   _velocity.x =0;
+   _velocity.y =0;
    // _velocity = velocity;
-   _acceleration.x=0;
-    _acceleration.y=0;
+   _acceleration.x=0.000;
+    _acceleration.y=0.000;
     _mass=mass;
     _radius=Radius;
 
@@ -117,6 +118,10 @@ void Particle::set_pos(){
 
 double Particle::getRadius(){ return _radius; }
 
+double Particle::getMass(){ return _mass; }
+
+
+
 
 void Particle::move(double t){    //t is going to be very small
         Vector p;
@@ -136,8 +141,8 @@ void Particle::move(double t){    //t is going to be very small
         //std::cout<<"::ye hai "<<p.x<<":"<<p.y<<":"<<t<<"   :   "<<_velocity.y<<std::endl;
         _nextPosition = (_position + p);
         //_nextPosition=_position+Vector(3,4);
-
-
+        _velocity.x += _acceleration.x*t;
+         _velocity.y += _acceleration.y*t;
     }
 
 

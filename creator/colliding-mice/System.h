@@ -6,6 +6,10 @@
 #include <vector>
 #include <QObject>
 
+
+#define Kg 0.05 //gravitational constant
+
+
 class System : public QObject{
 Q_OBJECT
 private:
@@ -23,10 +27,11 @@ public:
 
     void detectCollision();
     void actOnCollision(int i,int j);
+    void resetAcceleration();
 
 public slots:
     void run();
-
+    //void Pause();
     };
 
 
