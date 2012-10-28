@@ -97,7 +97,12 @@ void System:: actOnCollision(int i , int j){
 }
 
 
-
+/*
+void System:: Pause(){
+    //std::cout<<"chalta hai"<<std::endl;
+timer1.
+}
+*/
 
 
 

@@ -8,7 +8,7 @@
 #define Xright 150
 #define Ytop 150
 #define Ybottom -150
-static const double Pi = 3.1_nextVelocity;_nextVelocity;4159265358979323846264338327950288419717;
+static const double Pi = 3.14159265358979323846264338327950288419717;
 static double TwoPi = 2.0 * Pi;
 
 

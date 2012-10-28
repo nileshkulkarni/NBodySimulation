@@ -6,7 +6,7 @@
 
  #include <math.h>
 
- static const int MouseCount = 8;
+ static const int MouseCount = 4;
 #define probe_interval 1000/1000
 #define particleMass 1
 #define particleRadius 10
@@ -17,6 +17,14 @@
  {
      QApplication app(argc, argv);
      qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+     QPushButton *pause;
+     pause = new QPushButton;
+     pause->setGeometry(0,0,25,50);
+     pause->setText("Pause");
+     QPushButton *play;
+     play = new QPushButton;
+     play->setGeometry(0,0,25,50);
+     play->setText("Play");
 
      QGraphicsScene scene;
      scene.setSceneRect(Xleft, Ybottom, Xright, Ytop);
@@ -50,11 +58,19 @@
      }
      scene.addRect( Xright-330,Ybottom-30,360,360,QPen(QColor(255,255,255)));
 
+
      QGraphicsView view(&scene);
      view.setRenderHint(QPainter::Antialiasing);
      view.setBackgroundBrush(QBrush(QColor(255,0,0)));
+     QGraphicsProxyWidget *pauseWid = scene.addWidget(pause);
+     QGraphicsProxyWidget *playWid = scene.addWidget(play);
 
-    // view.setBackgroundBrush(QPixmap(":/images/cheese.jpg"));
+     pauseWid->setPos(-300,-300);
+     pauseWid->setGeometry(QRectF(-300,-300,-325,-325));
+     playWid->setPos(-300,-350);
+     playWid->setGeometry(QRectF(-300,-350,-325,-375));
+
+     // view.setBackgroundBrush(QPixmap(":/images/cheese.jpg"));
      view.setCacheMode(QGraphicsView::CacheBackground);
      view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
      view.setDragMode(QGraphicsView::ScrollHandDrag);
@@ -63,7 +79,9 @@
      view.show();
 
      QTimer timer;
-     QTimer timer1;
+    // QTimer timer1;
+     QObject::connect(pause,SIGNAL(clicked()), &timer ,SLOT(stop()));
+     QObject::connect(play,SIGNAL(clicked()), &timer ,SLOT(start()));
      QObject::connect(&timer,SIGNAL(timeout()), &sys , SLOT(run()));
 
      QObject::connect(&timer, SIGNAL(timeout()), &scene, SLOT(advance()));
@@ -73,4 +91,8 @@
 
 
      return app.exec();
+
+
  }
+
+
