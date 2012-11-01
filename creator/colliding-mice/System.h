@@ -7,7 +7,7 @@
 #include <QObject>
 
 
-#define Kg 0.05 //gravitational constant
+#define Kg 0.01 //gravitational constant
 
 
 class System : public QObject{

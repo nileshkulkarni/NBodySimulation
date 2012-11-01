@@ -3,11 +3,11 @@
 #include "AllClasses.h"
 
  #include <QtGui>
-
+#include<iostream>
  #include <math.h>
 
- static const int MouseCount = 4;
-#define probe_interval 1000/1000
+ static int MouseCount = 4;
+#define probe_interval 1000/33
 #define particleMass 1
 #define particleRadius 10
 
@@ -26,11 +26,18 @@
      play->setGeometry(0,0,25,50);
      play->setText("Play");
 
+     int placement_option;
      QGraphicsScene scene;
      scene.setSceneRect(Xleft, Ybottom, Xright, Ytop);
      scene.setItemIndexMethod(QGraphicsScene::NoIndex);
+     int balls;
+     std::cout<< "Enter the no of balls \n" << std ::endl;
 
+     std:: cin>>balls;
+        MouseCount =balls;
 
+     std::cout<< "Enter a option where you want to place. " <<std::endl;
+    std:: cin>>placement_option;
      System sys(MouseCount,probe_interval);
 
      for (int i = 0; i < MouseCount; ++i) {
@@ -38,19 +45,25 @@
          QColor q(0,0,0);
          Particle *particle = new Particle(q,particleMass,particleRadius);
         //Particle *particle = new Particle(q,particleMass,particleRadius ,Vector( 0.01* (i%2)  - 0.01 * ((i+1)%2) , 0));
-
+         if(placement_option == 1){
          particle->setPos(::sin((i * TwoPi) / MouseCount) * 150,
                        ::cos((i * TwoPi) / MouseCount) * 150);
+        }
+         else if(placement_option == 2)
+         {
 
+         particle->setPos(i%2 * (qrand()%200 -100) + (i+1)%2 *(((i)%4 * 100) - (i+1)%2 * 100),
+                       (i+1)%2 *(qrand()%200-100 )  + (i)%2 *(((i+1)%4 * 100) - (i)%2 * 100)
+                         );
+        }
+         else{
 
-         //particle->setPos(i%2 * (qrand()%200 -100) + (i+1)%2 *(((i)%4 * 100) - (i+1)%2 * 100),
-           //            (i+1)%2 *(qrand()%200-100 )  + (i)%2 *(((i+1)%4 * 100) - (i)%2 * 100)
-             //            );
+           particle->setPos(qrand()%(2*Xright) -Xright ,qrand()%(2*Ytop) -Ytop);
 
-
-
-          //  particle->setPos(qrand()%(2*Xright) -Xright ,qrand()%(2*Ytop) -Ytop);
-         //  particle->setPos( -200*(i%2)+ 200*((i+1)%2), 0 );
+        }
+         /*else{
+             particle->setPos( -200*(i%2)+ 200*((i+1)%2), 0 );
+         }*/
 
          scene.addItem(particle);
          sys.addItem(particle,i);
@@ -75,7 +88,7 @@
      view.setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
      view.setDragMode(QGraphicsView::ScrollHandDrag);
      view.setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "N Body Simulation"));
-     view.resize(300, 300);
+     view.resize(700, 700);
      view.show();
 
      QTimer timer;
