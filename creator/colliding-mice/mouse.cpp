@@ -30,8 +30,8 @@ Particle::Particle(QColor colour,double mass , double Radius )
    color = colour;
    //_velocity.x = (qrand()%100)/100;
    //_velocity.y = (qrand()%100)/100;
-   _velocity.x =0;
-   _velocity.y =0;
+   _velocity.x =0.1;
+   _velocity.y =0.1;
    // _velocity = velocity;
    _acceleration.x=0.000;
     _acceleration.y=0.000;
@@ -41,7 +41,7 @@ Particle::Particle(QColor colour,double mass , double Radius )
    //_position.x= mapToParent( 0 ,0 ).x();
    // _position.y= mapToParent( 0 , 0).y();
 
-    mouseEyeDirection=0.2;
+//    mouseEyeDirection=0.2;
 
 }
 /*
@@ -117,8 +117,12 @@ void Particle::updatePosition(){
 
 
 
+void Particle::set_pos(Vector position){
+    _position=position;
+}
+
 void Particle::set_pos(){
-    setPos(_position.x,_position.y);
+    setPos(_positon.x,_position.y);
 }
 
 
